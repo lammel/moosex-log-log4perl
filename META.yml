@@ -1,0 +1,22 @@
+---
+abstract: 'A Logging Role for Moose based on Log::Log4perl'
+author:
+  - 'Roland Lammel C<< <lammel@cpan.org> >>'
+build_requires:
+  IO::Scalar: 0
+  Test::More: 0
+distribution_type: module
+generated_by: 'Module::Install version 0.75'
+license: perl
+meta-spec:
+  url: http://module-build.sourceforge.net/META-spec-v1.3.html
+  version: 1.3
+name: MooseX-Log-Log4perl
+no_index:
+  directory:
+    - inc
+    - t
+requires:
+  Log::Log4perl: 0
+  Moose: 0
+version: 0.1

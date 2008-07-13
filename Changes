@@ -1,0 +1,6 @@
+Revision history for MooseX::Log::Log4perl
+
+0.1    Thu Jul 10 2008
+       Initial release with support for log4perl logging. (Roland Lammel)
+       Logger init  has to be done outside of this package for now.
+
