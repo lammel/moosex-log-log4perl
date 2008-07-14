@@ -4,7 +4,7 @@ use Moose::Role;
 
 with 'MooseX::Log::Log4perl'; 
 
-our $VERSION = '0.2.1';
+our $VERSION = '0.30';
 
 has 'logger' => (
 	is      => 'rw',

@@ -2,9 +2,8 @@ package MooseX::Log::Log4perl;
 
 use Moose::Role;
 use Log::Log4perl;
-use Data::Dumper;
 
-our $VERSION = '0.2.1';
+our $VERSION = '0.30';
 
 has 'logger' => (
 	is      => 'rw',
@@ -12,6 +11,40 @@ has 'logger' => (
 	lazy    => 1,
 	default => sub { my $self = shift; return Log::Log4perl->get_logger($self) }
 );
+
+#TODO enable MooseX::Storage like interface to setup roles
+#sub import {
+#	my $pkg = caller();
+#
+#	return if $pkg eq 'main';
+#
+#	( $pkg->can('meta') )
+#	  || confess "This package can only be used in Moose based classes";
+#
+#	$pkg->meta->alias_method(
+#		'Log4perl' => sub {
+#			my %params = @_;
+#
+#			my $role = 'MooseX::Log::Log4perl';
+#			$role = 'MooseX::Log::Log4perl::Easy' if ( exists $params{':easy'} );
+#			### Load the role
+#			Class::MOP::load_class($role) || die "Could not load role ($role) for package ($pkg)";
+#
+#			if ( exists $params{'prefix'} ) {
+#				foreach my $lvl (qw(fatal error warn info debug trace)) {
+#					$role->meta->add_method(
+#						"log_$lvl" => sub {
+#							my $self = shift;
+#							$self->logger->$lvl(@_);
+#						}
+#					);
+#				}
+#			}
+#
+#			return $role;
+#		}
+#	);
+#}
 
 #sub BUILD {
 #	my $pkg = shift;
@@ -26,14 +59,14 @@ has 'logger' => (
 #			my $self = shift;
 #			$self->logger->$lvl(@_);
 #		});
-#    	
+#
 #	}
 #	print STDERR "Build\n";
 #}
 
 sub log {
 	my ( $self, $category ) = @_;
-	if (defined($category)) {
+	if ( defined($category) ) {
 		return Log::Log4perl->get_logger($category);
 	}
 	return $self->logger;
@@ -49,7 +82,7 @@ MooseX::Log::Log4perl - A Logging Role for Moose based on Log::Log4perl
 
 =head1 VERSION
 
-This document describes MooseX::Log::Log4perl version 0.2.1
+This document describes MooseX::Log::Log4perl version 0.30
 
 =head1 SYNOPSIS
 
