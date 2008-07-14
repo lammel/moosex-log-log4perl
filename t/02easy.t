@@ -6,7 +6,7 @@ use warnings;
 use IO::Scalar;
 use Log::Log4perl;
 
-use Test::More tests => 9;
+use Test::More tests => 10;
 
 BEGIN {
 my $cfg = <<__ENDCFG__;
@@ -25,7 +25,7 @@ Log::Log4perl->init(\$cfg);
 	package ConfigLogTest;
 
 	use Moose;
-	with 'MooseX::Log::Log4perl';
+	with 'MooseX::Log::Log4perl::Easy';
 
 	has 'foo' => ( is => 'rw', isa => 'Str' );
 }
@@ -36,29 +36,28 @@ sub test_logger {
 	$obj->log->debug('foo');
 	$obj->log("SPECIAL")->info('BAZ');
 	$obj->log->error('bar');
+	$obj->log_fatal('brains');
 }
 
 {
 	my $obj = new ConfigLogTest;
 
 	isa_ok( $obj, 'ConfigLogTest' );
-	ok( $obj->can('log'),    "Role method log exists" );
-	ok( $obj->can('logger'), "Role method logger exists" );
-	ok( !$obj->can('log_error'), "Interface not poluted with easy method log_error" );
-	ok( !$obj->can('debug'), "Interface not poluted with direct debug method" );
-
-	my $logger = $obj->logger;
-	isa_ok( $obj->logger, 'Log::Log4perl::Logger' );
-	is( $obj->can('debug'), undef, "Object not poluted" );
-	is( $obj->can('error'), undef, "Object not poluted" );
-
+	
+	### Test the interface
+	ok( $obj->can("logger"),    "Role method logger exists" );
+	ok( $obj->can("log"),    "Role method log exists" );
+	foreach my $lvl (qw(fatal error warn info debug trace)) {
+		ok( $obj->can("log_$lvl"),    "Role method log_$lvl exists" );
+	}
+	
 	tie *STDERR, 'IO::Scalar', \my $err;
 	local $SIG{__DIE__} = sub { untie *STDERR; die @_ };
 
 	test_logger( $obj );
 	untie *STDERR;
 
-	# Cleanup log output
+	# Cleanup output
 	$err =~ s/(ConfigLogTest)=HASH\([^\)]+\)/$1/gm;
 	$err =~ s/\r\n/\n/gm;
 
@@ -66,6 +65,7 @@ sub test_logger {
 DEBUG [ConfigLogTest] foo
 INFO [SPECIAL] BAZ
 ERROR [ConfigLogTest] bar
+FATAL [ConfigLogTest] brains
 __ENDLOG__
 
 	is( $err, $expect, "Log messages are formated as expected to stderr" );
