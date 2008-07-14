@@ -4,7 +4,7 @@ use Moose::Role;
 
 with 'MooseX::Log::Log4perl'; 
 
-our $VERSION = '0.2';
+our $VERSION = '0.2.1';
 
 has 'logger' => (
 	is      => 'rw',
@@ -26,11 +26,11 @@ __END__
 
 =head1 NAME
 
-MooseX::Log::Log4perl::Eays - A Logging Role with easy interface for Moose based on L<MooseX::Log::Log4perl>
+MooseX::Log::Log4perl::Easy - A Logging Role with easy interface for Moose based on L<MooseX::Log::Log4perl>
 
 =head1 VERSION
 
-This document describes MooseX::Log::Log4perl::Easy version 0.2
+This document describes MooseX::Log::Log4perl::Easy version 0.2.1
 
 =head1 SYNOPSIS
 
@@ -38,7 +38,7 @@ This document describes MooseX::Log::Log4perl::Easy version 0.2
  use Moose;
  use Log::Log4perl qw(:easy);
 
- with MooseX::Log::Log4perl::Easy;
+ with 'MooseX::Log::Log4perl::Easy';
 
  BEGIN {
  	Log::Log4perl->easy_init();

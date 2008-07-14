@@ -4,7 +4,7 @@ use Moose::Role;
 use Log::Log4perl;
 use Data::Dumper;
 
-our $VERSION = '0.2';
+our $VERSION = '0.2.1';
 
 has 'logger' => (
 	is      => 'rw',
@@ -49,7 +49,7 @@ MooseX::Log::Log4perl - A Logging Role for Moose based on Log::Log4perl
 
 =head1 VERSION
 
-This document describes MooseX::Log::Log4perl version 0.1
+This document describes MooseX::Log::Log4perl version 0.2.1
 
 =head1 SYNOPSIS
 
@@ -57,7 +57,7 @@ This document describes MooseX::Log::Log4perl version 0.1
  use Moose;
  use Log::Log4perl qw(:easy);
  
- with MooseX::Log::Log4perl;
+ with 'MooseX::Log::Log4perl';
  
  BEGIN {
    Log::Log4perl->easy_init();
@@ -77,6 +77,11 @@ The initialization of the Log4perl instance must be performed prior to logging t
 Otherwise the default initialization will happen, probably not doing the things you expect.
 
 For compatibility the C<logger> attribute can be accessed to use a common interface for application logging.
+
+For simple logging needs use L<MooseX::Log::Log4perl::Easy> to directly add log_<level> methods to your class 
+instance.
+
+    $self->log_info("Dummy");
 
 =head1 ACCESSORS
 

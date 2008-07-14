@@ -19,4 +19,4 @@ no_index:
 requires:
   Log::Log4perl: 0
   Moose: 0
-version: 0.2
+version: 0.2.1
