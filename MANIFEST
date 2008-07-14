@@ -11,10 +11,12 @@ inc/Module/Install/Metadata.pm
 inc/Module/Install/Win32.pm
 inc/Module/Install/WriteAll.pm
 lib/MooseX/Log/Log4perl.pm
+lib/MooseX/Log/Log4perl/Easy.pm
 Makefile.PL
 MANIFEST			This list of files
 META.yml
 README
 t/00load.t
 t/01basic.t
+t/02easy.t
 t/pod.t

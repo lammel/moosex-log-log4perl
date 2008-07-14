@@ -1,6 +1,11 @@
 Revision history for MooseX::Log::Log4perl
 
+0.2    Mon Jul 14 2008
+	Added MooseX::Log::Log4perl::Easy for simple log interface
+	this adds methods $self->log_error, $self->log_debug, ... for all log levels
+	Cleanup of tests and pod 
+
 0.1    Thu Jul 10 2008
-       Initial release with support for log4perl logging. (Roland Lammel)
-       Logger init  has to be done outside of this package for now.
+	Initial release with support for log4perl logging. (Roland Lammel)
+	Logger init  has to be done outside of this package for now.
 
