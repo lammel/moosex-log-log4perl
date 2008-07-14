@@ -2,8 +2,13 @@ package MooseX::Log::Log4perl;
 
 use Moose::Role;
 use Log::Log4perl;
+use Data::Dumper;
 
-our $VERSION = '0.1';
+our $VERSION = '0.2';
+
+sub initialize {
+	print STDERR "Init\n";
+}
 
 has 'logger' => (
 	is      => 'rw',
@@ -11,6 +16,24 @@ has 'logger' => (
 	lazy    => 1,
 	default => sub { my $self = shift; return Log::Log4perl->get_logger($self) }
 );
+
+sub BUILD {
+	my $pkg = shift;
+
+    return if $pkg eq 'main';
+
+    ( $pkg->can('meta') && ($pkg->meta->isa('Moose::Meta::Class')||$pkg->meta->isa('Moose::Meta::Role')) )
+      || confess "This package can only be used in Moose based classes";
+
+	foreach my $lvl (qw(fatal error warn info debug trace)) {
+		$pkg->meta->add_method("log_$lvl" => sub {
+			my $self = shift;
+			$self->logger->$lvl(@_);
+		});
+    	
+	}
+	print STDERR "Build\n";
+}
 
 sub log {
 	my ( $self, $category ) = @_;
