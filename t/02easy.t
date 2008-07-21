@@ -43,22 +43,21 @@ sub test_logger {
 	my $obj = new ConfigLogTest;
 
 	isa_ok( $obj, 'ConfigLogTest' );
-	
+
 	### Test the interface
 	ok( $obj->can("logger"),    "Role method logger exists" );
 	ok( $obj->can("log"),    "Role method log exists" );
 	foreach my $lvl (qw(fatal error warn info debug trace)) {
 		ok( $obj->can("log_$lvl"),    "Role method log_$lvl exists" );
 	}
-	
+
 	tie *STDERR, 'IO::Scalar', \my $err;
 	local $SIG{__DIE__} = sub { untie *STDERR; die @_ };
 
 	test_logger( $obj );
 	untie *STDERR;
 
-	# Cleanup output
-	$err =~ s/(ConfigLogTest)=HASH\([^\)]+\)/$1/gm;
+	# Cleanup log output line-endings
 	$err =~ s/\r\n/\n/gm;
 
 	my $expect = <<__ENDLOG__;

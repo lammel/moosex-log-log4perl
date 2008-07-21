@@ -1,15 +1,18 @@
 Revision history for MooseX::Log::Log4perl
 
+0.31  Mon Jul 21 2008
+	Fixed bug reported by Maik Hentsche
+
 0.30  Tue Jul 15 2008
-	Corrected MANIFEST (added MANIFEST.SKIP to generate it correctly now) 
-	Improved pod and fixed typo in MooseX::Log::Log4perl::Easy 
-	Cleanup of tests and pod 
+	Corrected MANIFEST (added MANIFEST.SKIP to generate it correctly now)
+	Improved pod and fixed typo in MooseX::Log::Log4perl::Easy
+	Cleanup of tests and pod
 	Repackage as 0.30 to fix failing cpan tests (and fix perl module version numbering for CPAN)
 
 0.2    Mon Jul 14 2008
 	Added MooseX::Log::Log4perl::Easy for simple log interface
 	this adds methods $self->log_error, $self->log_debug, ... for all log levels
-	Cleanup of tests and pod 
+	Cleanup of tests and pod
 
 0.1    Thu Jul 10 2008
 	Initial release with support for log4perl logging. (Roland Lammel)

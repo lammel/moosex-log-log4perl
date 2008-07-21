@@ -2,16 +2,9 @@ package MooseX::Log::Log4perl::Easy;
 
 use Moose::Role;
 
-with 'MooseX::Log::Log4perl'; 
+with 'MooseX::Log::Log4perl';
 
-our $VERSION = '0.30';
-
-has 'logger' => (
-	is      => 'rw',
-	isa     => 'Log::Log4perl::Logger',
-	lazy    => 1,
-	default => sub { my $self = shift; return Log::Log4perl->get_logger($self) }
-);
+our $VERSION = '0.31';
 
 sub log_fatal {	my $self = shift; $self->logger->fatal(@_); }
 sub log_error {	my $self = shift; $self->logger->error(@_); }
@@ -30,7 +23,7 @@ MooseX::Log::Log4perl::Easy - A Logging Role with easy interface for Moose based
 
 =head1 VERSION
 
-This document describes MooseX::Log::Log4perl::Easy version 0.2.1
+This document describes MooseX::Log::Log4perl::Easy version 0.31
 
 =head1 SYNOPSIS
 
@@ -53,9 +46,9 @@ This document describes MooseX::Log::Log4perl::Easy version 0.2.1
 
 =head1 DESCRIPTION
 
-The Easy logging role based on the L<MooseX::Log::Log4perl> logging role for Moose directly adds the 
-logmethods for all available levels to your clas instance. Hence it is possible to use 
-  
+The Easy logging role based on the L<MooseX::Log::Log4perl> logging role for Moose directly adds the
+logmethods for all available levels to your clas instance. Hence it is possible to use
+
   $self->log_info("blabla");
 
 without having to access a seperate log attribute as in MooseX::Log::Log4perl;
@@ -70,41 +63,41 @@ See L<MooseX::Log::Log4perl>
 
 See L<MooseX::Log::Log4perl>
 
-=head2 log_fatal
+=head2 log_fatal ($msg)
 
-Logs a fatal message using the logger attribute. Same as calling
+Logs a fatal message $msg using the logger attribute. Same as calling
 
-  $self->logger->fatal
+  $self->logger->fatal($msg)
 
-=head2 log_error
+=head2 log_error ($msg)
 
 Logs an error message using the logger attribute. Same as calling
 
-  $self->logger->error
+  $self->logger->error($msg)
 
-=head2 log_warn
+=head2 log_warn ($msg)
 
 Logs a warn message using the logger attribute. Same as calling
 
-  $self->logger->warn
+  $self->logger->warn($msg)
 
-=head2 log_info
+=head2 log_info ($msg)
 
 Logs an info message using the logger attribute. Same as calling
 
-  $self->logger->info
+  $self->logger->info($msg)
 
-=head2 log_debug
+=head2 log_debug ($msg)
 
 Logs a debug message using the logger attribute. Same as calling
 
-  $self->logger->debug
+  $self->logger->debug($msg)
 
-=head2 log_trace
+=head2 log_trace ($msg)
 
 Logs a trace message using the logger attribute. Same as calling
 
-  $self->logger->trace
+  $self->logger->trace($msg)
 
 =head1 SEE ALSO
 

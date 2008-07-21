@@ -3,13 +3,13 @@ package MooseX::Log::Log4perl;
 use Moose::Role;
 use Log::Log4perl;
 
-our $VERSION = '0.30';
+our $VERSION = '0.31';
 
 has 'logger' => (
 	is      => 'rw',
 	isa     => 'Log::Log4perl::Logger',
 	lazy    => 1,
-	default => sub { my $self = shift; return Log::Log4perl->get_logger($self) }
+	default => sub { my $self = shift; return Log::Log4perl->get_logger(ref($self)) }
 );
 
 #TODO enable MooseX::Storage like interface to setup roles
@@ -89,13 +89,13 @@ This document describes MooseX::Log::Log4perl version 0.30
  package MyApp;
  use Moose;
  use Log::Log4perl qw(:easy);
- 
+
  with 'MooseX::Log::Log4perl';
- 
+
  BEGIN {
    Log::Log4perl->easy_init();
  }
- 
+
  sub foo {
    my ($self) = @_;
    $self->log->debug("started bar");    ### logs with default class catergory "MyApp"
@@ -111,7 +111,7 @@ Otherwise the default initialization will happen, probably not doing the things 
 
 For compatibility the C<logger> attribute can be accessed to use a common interface for application logging.
 
-For simple logging needs use L<MooseX::Log::Log4perl::Easy> to directly add log_<level> methods to your class 
+For simple logging needs use L<MooseX::Log::Log4perl::Easy> to directly add log_<level> methods to your class
 instance.
 
     $self->log_info("Dummy");
@@ -121,19 +121,19 @@ instance.
 =head2 logger
 
 The C<logger> attribute holds the L<Log::Log4perl> object that implements all logging methods for the
-defined log levels, such as C<debug> or C<error>. As this method is defined also in other logging 
+defined log levels, such as C<debug> or C<error>. As this method is defined also in other logging
 roles/systems like L<MooseX::Log::LogDispatch> this can be thought of as a common logging interface.
 
   package MyApp::View::JSON;
-  
+
   extends 'MyApp::View';
   with 'MooseX:Log::Log4perl';
-  
+
   sub bar {
     $self->logger->debug("Something could be crappy here");	# logs a debug message
     $self->logger->debug("Something could be crappy here");	# logs a debug message
   }
-  
+
 
 =head2 log
 
