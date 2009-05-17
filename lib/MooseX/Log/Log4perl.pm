@@ -3,7 +3,7 @@ package MooseX::Log::Log4perl;
 use Moose::Role;
 use Log::Log4perl;
 
-our $VERSION = '0.32';
+our $VERSION = '0.40';
 
 has 'logger' => (
 	is      => 'rw',
@@ -13,7 +13,7 @@ has 'logger' => (
 );
 
 sub log {
-        return Log::Log4perl->get_logger($_[2]) if ($_[2] && !ref($_[2]));
+        return Log::Log4perl->get_logger($_[1]) if ($_[1] && !ref($_[1]));
 	return $_[0]->logger;
 }
 
@@ -114,7 +114,7 @@ Thanks to Michael Schilli C<< <m@perlmeister.com> >> for L<Log::Log4perl> and su
 
 =head1 LICENCE AND COPYRIGHT
 
-Copyright (c) 2008, Roland Lammel C<< <lammel@cpan.org> >>. Some rights reserved.
+Copyright (c) 2008-2009, Roland Lammel C<< <lammel@cpan.org> >>, http://www.quikit.at. Some rights reserved.
 
 This module is free software; you can redistribute it and/or
 modify it under the same terms as Perl itself. See L<perlartistic>.

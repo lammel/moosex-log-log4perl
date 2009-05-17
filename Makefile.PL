@@ -1,4 +1,4 @@
-use inc::Module::Install '0.72';
+use inc::Module::Install '0.85';
 
 name 'MooseX-Log-Log4perl';
 all_from 'lib/MooseX/Log/Log4perl.pm';
