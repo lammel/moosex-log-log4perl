@@ -1,5 +1,7 @@
 Revision history for MooseX::Log::Log4perl
 
+	Added t/99bench.t for basic benchmark testing
+
 0.31  Mon Jul 21 2008
 	Fixed bug reported by Maik Hentsche
 

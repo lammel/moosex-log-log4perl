@@ -3,7 +3,7 @@ package MooseX::Log::Log4perl;
 use Moose::Role;
 use Log::Log4perl;
 
-our $VERSION = '0.31';
+our $VERSION = '0.32';
 
 has 'logger' => (
 	is      => 'rw',
@@ -12,64 +12,9 @@ has 'logger' => (
 	default => sub { my $self = shift; return Log::Log4perl->get_logger(ref($self)) }
 );
 
-#TODO enable MooseX::Storage like interface to setup roles
-#sub import {
-#	my $pkg = caller();
-#
-#	return if $pkg eq 'main';
-#
-#	( $pkg->can('meta') )
-#	  || confess "This package can only be used in Moose based classes";
-#
-#	$pkg->meta->alias_method(
-#		'Log4perl' => sub {
-#			my %params = @_;
-#
-#			my $role = 'MooseX::Log::Log4perl';
-#			$role = 'MooseX::Log::Log4perl::Easy' if ( exists $params{':easy'} );
-#			### Load the role
-#			Class::MOP::load_class($role) || die "Could not load role ($role) for package ($pkg)";
-#
-#			if ( exists $params{'prefix'} ) {
-#				foreach my $lvl (qw(fatal error warn info debug trace)) {
-#					$role->meta->add_method(
-#						"log_$lvl" => sub {
-#							my $self = shift;
-#							$self->logger->$lvl(@_);
-#						}
-#					);
-#				}
-#			}
-#
-#			return $role;
-#		}
-#	);
-#}
-
-#sub BUILD {
-#	my $pkg = shift;
-#
-#    return if $pkg eq 'main';
-#
-#    ( $pkg->can('meta') && ($pkg->meta->isa('Moose::Meta::Class')||$pkg->meta->isa('Moose::Meta::Role')) )
-#      || confess "This package can only be used in Moose based classes";
-#
-#	foreach my $lvl (qw(fatal error warn info debug trace)) {
-#		$pkg->meta->add_method("log_$lvl" => sub {
-#			my $self = shift;
-#			$self->logger->$lvl(@_);
-#		});
-#
-#	}
-#	print STDERR "Build\n";
-#}
-
 sub log {
-	my ( $self, $category ) = @_;
-	if ( defined($category) ) {
-		return Log::Log4perl->get_logger($category);
-	}
-	return $self->logger;
+        return Log::Log4perl->get_logger($_[2]) if ($_[2] && !ref($_[2]));
+	return $_[0]->logger;
 }
 
 1;
@@ -135,10 +80,10 @@ roles/systems like L<MooseX::Log::LogDispatch> this can be thought of as a commo
   }
 
 
-=head2 log
+=head2 log([$category])
 
-A shorter alias for logger, but also allowing to change the log category
-this method call.
+Basically the same as logger, but also allowing to change the log category
+for this log message.
 
  if ($myapp->log->is_debug()) {
      $myapp->log->debug("Woot"); # category is class myapp
