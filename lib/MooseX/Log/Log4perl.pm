@@ -1,19 +1,20 @@
 package MooseX::Log::Log4perl;
 
+use 5.008;
 use Moose::Role;
 use Log::Log4perl;
 
-our $VERSION = '0.40';
+our $VERSION = '0.42';
 
 has 'logger' => (
 	is      => 'rw',
 	isa     => 'Log::Log4perl::Logger',
 	lazy    => 1,
-	default => sub { my $self = shift; return Log::Log4perl->get_logger(ref($self)) }
+	default => sub { return Log::Log4perl->get_logger(ref($_[0])) }
 );
 
 sub log {
-        return Log::Log4perl->get_logger($_[1]) if ($_[1] && !ref($_[1]));
+	return Log::Log4perl->get_logger($_[1]) if ($_[1] && !ref($_[1]));
 	return $_[0]->logger;
 }
 
@@ -24,10 +25,6 @@ __END__
 =head1 NAME
 
 MooseX::Log::Log4perl - A Logging Role for Moose based on Log::Log4perl
-
-=head1 VERSION
-
-This document describes MooseX::Log::Log4perl version 0.30
 
 =head1 SYNOPSIS
 
@@ -110,11 +107,21 @@ Roland Lammel C<< <lammel@cpan.org> >>
 Inspired by the work by Chris Prather C<< <perigrin@cpan.org> >> and Ash
 Berlin C<< <ash@cpan.org> >> on L<MooseX::LogDispatch>
 
-Thanks to Michael Schilli C<< <m@perlmeister.com> >> for L<Log::Log4perl> and suggestions in the interface.
+=head1 CONTRIBUTORS
+
+In alphabetical order:
+
+=over 2
+
+=item Michael Schilli C<< <m@perlmeister.com> >> for L<Log::Log4perl> and suggestions in the interface.
+
+=item Tim Bunce C<< <TIMB@cpan.org> >> for corrections in the L<MooseX::Log::Log4perl::Easy> module.
+
+=back
 
 =head1 LICENCE AND COPYRIGHT
 
-Copyright (c) 2008-2009, Roland Lammel C<< <lammel@cpan.org> >>, http://www.quikit.at. Some rights reserved.
+Copyright (c) 2008-2010, Roland Lammel C<< <lammel@cpan.org> >>, http://www.quikit.at. Some rights reserved.
 
 This module is free software; you can redistribute it and/or
 modify it under the same terms as Perl itself. See L<perlartistic>.

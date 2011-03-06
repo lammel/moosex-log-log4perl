@@ -4,14 +4,14 @@ use Moose::Role;
 
 with 'MooseX::Log::Log4perl';
 
-our $VERSION = '0.40';
+our $VERSION = '0.41';
 
-sub log_fatal { local $Log::Log4perl::caller_depth += 1; shift->logger->fatal(@_); }
-sub log_error { local $Log::Log4perl::caller_depth += 1; shift->logger->error(@_); }
-sub log_warn  { local $Log::Log4perl::caller_depth += 1; shift->logger->warn(@_); }
-sub log_info  { local $Log::Log4perl::caller_depth += 1; shift->logger->info(@_); }
-sub log_debug { local $Log::Log4perl::caller_depth += 1; shift->logger->debug(@_); }
-sub log_trace { local $Log::Log4perl::caller_depth += 1; shift->logger->trace(@_); }
+sub log_fatal { local $Log::Log4perl::caller_depth += 1; return shift->logger->fatal(@_); }
+sub log_error { local $Log::Log4perl::caller_depth += 1; return shift->logger->error(@_); }
+sub log_warn  { local $Log::Log4perl::caller_depth += 1; return shift->logger->warn(@_); }
+sub log_info  { local $Log::Log4perl::caller_depth += 1; return shift->logger->info(@_); }
+sub log_debug { local $Log::Log4perl::caller_depth += 1; return shift->logger->debug(@_); }
+sub log_trace { local $Log::Log4perl::caller_depth += 1; return shift->logger->trace(@_); }
 
 1;
 
@@ -19,11 +19,7 @@ __END__
 
 =head1 NAME
 
-MooseX::Log::Log4perl::Easy - A Logging Role with easy interface for Moose based on L<MooseX::Log::Log4perl>
-
-=head1 VERSION
-
-This document describes MooseX::Log::Log4perl::Easy version 0.31
+MooseX::Log::Log4perl::Easy - A role for easy usage of logging in your Moose based modules based on L<MooseX::Log::Log4perl>
 
 =head1 SYNOPSIS
 
@@ -54,7 +50,7 @@ logmethods for all available levels to your class instance. Hence it is possible
 without having to access a seperate log attribute as in MooseX::Log::Log4perl;
 
 In case your app grows and you need more of the super-cow powers of Log4perl or simply don't want the additional 
-methodes to clutter up your class you can simply replace all code C<< $self->log_LEVEL >> with 
+methods to clutter up your class you can simply replace all code C<< $self->log_LEVEL >> with 
 C<< $self->log->LEVEL >>.
 
 You can use the following regex substitution to accomplish that:
@@ -129,7 +125,7 @@ Contributions from Tim Bunce C<< <TIMB@cpan.org> >>
 
 =head1 LICENCE AND COPYRIGHT
 
-Copyright (c) 2008-2009, Roland Lammel C<< <lammel@cpan.org> >>, http://www.quikit.at. Some rights reserved.
+Copyright (c) 2008-2010, Roland Lammel C<< <lammel@cpan.org> >>, http://www.quikit.at. Some rights reserved.
 
 This module is free software; you can redistribute it and/or
 modify it under the same terms as Perl itself. See L<perlartistic>.

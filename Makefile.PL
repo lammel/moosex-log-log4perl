@@ -6,8 +6,8 @@ all_from 'lib/MooseX/Log/Log4perl.pm';
 build_requires 'IO::Scalar';
 build_requires 'Test::More';
 
-requires 'Moose';
-requires 'Log::Log4perl';
+requires 'Moose' => 0.65;
+requires 'Log::Log4perl' => 1.13;
 
 auto_install;
 WriteAll;
