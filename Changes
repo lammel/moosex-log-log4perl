@@ -1,5 +1,9 @@
 Revision history for MooseX::Log::Log4perl
 
+0.43  Thu Aug 25 2011 (rl)
+	* Change to use Any::Moose to also support Mouse environemnt
+	* Documentation improvements for Any::Moose
+
 0.42  Thu Apr 29 2010 (again)
 	* Remove Log::Any from benchmark tests, we want to avoid failing tests
 

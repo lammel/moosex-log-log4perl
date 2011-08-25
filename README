@@ -1,4 +1,4 @@
-MooseX-Log-Log4perl version 0.1
+MooseX-Log-Log4perl version 0.43
 
 INSTALLATION
 
@@ -21,13 +21,14 @@ Alternatively, to install with Module::Build, you can use the following commands
 
 DEPENDENCIES
 
-- Moose
+- Any::Moose
+- Moose or Mouse
 - Log::Log4perl
 
 
 COPYRIGHT AND LICENCE
 
-Copyright (C) 2008, Roland Lammel
+Copyright (C) 2011, Roland Lammel <rl@quikit.at>
 
 This library is free software; you can redistribute it and/or modify
 it under the same terms as Perl itself.

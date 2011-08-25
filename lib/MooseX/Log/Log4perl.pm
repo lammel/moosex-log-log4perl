@@ -1,10 +1,10 @@
 package MooseX::Log::Log4perl;
 
 use 5.008;
-use Moose::Role;
+use Any::Moose 'Role';
 use Log::Log4perl;
 
-our $VERSION = '0.42';
+our $VERSION = '0.43';
 
 has 'logger' => (
 	is      => 'rw',
@@ -28,22 +28,17 @@ MooseX::Log::Log4perl - A Logging Role for Moose based on Log::Log4perl
 
 =head1 SYNOPSIS
 
- package MyApp;
- use Moose;
- use Log::Log4perl qw(:easy);
-
- with 'MooseX::Log::Log4perl';
-
- BEGIN {
-   Log::Log4perl->easy_init();
- }
-
- sub foo {
-   my ($self) = @_;
-   $self->log->debug("started bar");    ### logs with default class catergory "MyApp"
-   ...
-   $self->log('special')->info('bar');  ### logs with category special
- }
+    package MyApp;
+    use Moose;
+    
+    with 'MooseX::Log::Log4perl';
+    
+    sub something {
+        my ($self) = @_;
+        $self->log->debug("started bar");    ### logs with default class catergory "MyApp"
+        ...
+        $self->log('special')->info('bar');  ### logs with category "special"
+    }
 
 =head1 DESCRIPTION
 
@@ -53,10 +48,66 @@ Otherwise the default initialization will happen, probably not doing the things 
 
 For compatibility the C<logger> attribute can be accessed to use a common interface for application logging.
 
+Using the logger within a class is as simple as consuming a role:
+
+    package MyClass;
+    use Moose;
+    with 'MooseX::Log::Log4perl';
+    
+    sub dummy {
+        my $self = shift;
+        $self->log->info("Dummy log entry");
+    }
+
+The logger needs to be setup before using the logger, which could happen in the main application:
+
+    package main;
+    use Log::Log4perl qw(:easy);
+    use MyClass;
+    
+    BEGIN { Log::Log4perl->easy_init() };
+    
+    my $myclass = MyClass->new();
+    $myclass->log->info("In my class"); # Access the log of the object
+    $myclass->dummy;                    # Will log "Dummy log entry"
+
+=head1 EVEN SIMPLER USE
+
 For simple logging needs use L<MooseX::Log::Log4perl::Easy> to directly add log_<level> methods to your class
 instance.
 
     $self->log_info("Dummy");
+
+
+=head1 USING WITH MOUSE INSTEAD OF MOOSE
+
+As this module is using L<Any::Moose>, you can use it with Mouse instead of Moose too.
+
+This will allow to simple use it as documented above in a Mouse based application, like shown in the example below:
+
+This is your class consuming the MooseX::Log::Log4perl role.
+
+    package MyCat;
+    use Mouse;
+    
+    with 'MooseX::Log::Log4perl';
+    
+    sub catch_it {
+        my $self = shift;
+        $self->log->debug("Say Miau");
+    }
+
+Which can be simply used in your main application then.
+
+    package main;
+    use MyCat;
+    use Log::Log4perl qw(:easy);
+    BEGIN { Log::Log4perl->easy_init() };
+    
+    my $log = Log::Log4perl->get_logger();
+    $log->info("Application startup...");
+    MyCat->new()->catch_it();   ### Will log "Dummy dodo"
+
 
 =head1 ACCESSORS
 
@@ -72,8 +123,8 @@ roles/systems like L<MooseX::Log::LogDispatch> this can be thought of as a commo
   with 'MooseX:Log::Log4perl';
 
   sub bar {
-    $self->logger->debug("Something could be crappy here");	# logs a debug message
-    $self->logger->debug("Something could be crappy here");	# logs a debug message
+    $self->logger->info("Everything fine so far");    # logs a info message
+    $self->logger->debug("Something is fishy here");  # logs a debug message
   }
 
 
@@ -121,7 +172,7 @@ In alphabetical order:
 
 =head1 LICENCE AND COPYRIGHT
 
-Copyright (c) 2008-2010, Roland Lammel C<< <lammel@cpan.org> >>, http://www.quikit.at. Some rights reserved.
+Copyright (c) 2008-2011, Roland Lammel C<< <lammel@cpan.org> >>, http://www.quikit.at
 
 This module is free software; you can redistribute it and/or
 modify it under the same terms as Perl itself. See L<perlartistic>.
