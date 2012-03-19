@@ -16,8 +16,8 @@ has 'logger' => (
 sub log {
     my $self = shift;
     my $cat = shift;
-    if ($cat && $cat =~ m/^\+(.*)/) {
-        return Log::Log4perl->get_logger(ref($self) . "::" . $1);
+    if ($cat && $cat =~ m/^(\.|::)/) {
+        return Log::Log4perl->get_logger(ref($self) . $cat);
     } elsif($cat)  {
         return Log::Log4perl->get_logger($cat);
     } else {
@@ -46,7 +46,8 @@ MooseX::Log::Log4perl - A Logging Role for Moose based on Log::Log4perl
         ...
         $self->log('special')->info('bar');  ### logs with category "special"
         ...
-        $self->log('+special')->info('bar'); ### logs with category "MyApp.special"
+        $self->log('.special')->info('bar'); ### logs with category "MyApp.special"
+        $self->log('::special')->info('bar');### logs with category "MyApp.special"
     }
 
 =head1 DESCRIPTION
@@ -148,7 +149,8 @@ class (what would have been the category if you didn't specify one).
  }
  $myapp->log("TempCat")->info("Foobar"); # category TempCat
  $myapp->log->info("Grumble"); # category class again myapp
- $myapp->log("+TempCat")->info("Foobar"); # category myapp.TempCat
+ $myapp->log(".TempCat")->info("Foobar"); # category myapp.TempCat
+ $myapp->log("::TempCat")->info("Foobar"); # category myapp.TempCat
 
 =head1 SEE ALSO
 
