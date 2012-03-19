@@ -14,8 +14,15 @@ has 'logger' => (
 );
 
 sub log {
-	return Log::Log4perl->get_logger($_[1]) if ($_[1] && !ref($_[1]));
-	return $_[0]->logger;
+    my $self = shift;
+    my $cat = shift;
+    if ($cat && $cat =~ m/^\+(.*)/) {
+        return Log::Log4perl->get_logger(ref($self) . "::" . $1);
+    } elsif($cat)  {
+        return Log::Log4perl->get_logger($cat);
+    } else {
+        return $self->logger;
+    }
 }
 
 1;
@@ -38,6 +45,8 @@ MooseX::Log::Log4perl - A Logging Role for Moose based on Log::Log4perl
         $self->log->debug("started bar");    ### logs with default class catergory "MyApp"
         ...
         $self->log('special')->info('bar');  ### logs with category "special"
+        ...
+        $self->log('+special')->info('bar'); ### logs with category "MyApp.special"
     }
 
 =head1 DESCRIPTION
@@ -131,13 +140,15 @@ roles/systems like L<MooseX::Log::LogDispatch> this can be thought of as a commo
 =head2 log([$category])
 
 Basically the same as logger, but also allowing to change the log category
-for this log message.
+for this log message. If the category starts with a C<+>, we pre-pend the current
+class (what would have been the category if you didn't specify one).
 
  if ($myapp->log->is_debug()) {
      $myapp->log->debug("Woot"); # category is class myapp
  }
  $myapp->log("TempCat")->info("Foobar"); # category TempCat
  $myapp->log->info("Grumble"); # category class again myapp
+ $myapp->log("+TempCat")->info("Foobar"); # category myapp.TempCat
 
 =head1 SEE ALSO
 
