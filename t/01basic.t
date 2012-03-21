@@ -31,6 +31,8 @@ __ENDCFG__
 		$self->log->trace('hey');
 		$self->log->debug('foo');
 		$self->log("SPECIAL")->info('BAZ');
+		$self->log(".SPECIAL")->info('BAZ');
+		$self->log("::SPECIAL")->info('BAZ');
 		$self->log->warn('no nooo NOOOO');
 		$self->log->error('bar');
 		$self->log->fatal('titanic is sinking');
@@ -75,6 +77,8 @@ __ENDCFG__
 TRACE [BasicLogTest] [BasicLogTest::test_log] hey
 DEBUG [BasicLogTest] [BasicLogTest::test_log] foo
 INFO [SPECIAL] [BasicLogTest::test_log] BAZ
+INFO [BasicLogTest.SPECIAL] [BasicLogTest::test_log] BAZ
+INFO [BasicLogTest.SPECIAL] [BasicLogTest::test_log] BAZ
 WARN [BasicLogTest] [BasicLogTest::test_log] no nooo NOOOO
 ERROR [BasicLogTest] [BasicLogTest::test_log] bar
 FATAL [BasicLogTest] [BasicLogTest::test_log] titanic is sinking
