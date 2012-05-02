@@ -4,7 +4,7 @@ use Any::Moose 'Role';
 
 with 'MooseX::Log::Log4perl';
 
-our $VERSION = '0.43';
+our $VERSION = '0.44';
 
 sub log_fatal { local $Log::Log4perl::caller_depth += 1; return shift->logger->fatal(@_); }
 sub log_error { local $Log::Log4perl::caller_depth += 1; return shift->logger->error(@_); }

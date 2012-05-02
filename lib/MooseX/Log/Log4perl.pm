@@ -4,13 +4,13 @@ use 5.008;
 use Any::Moose 'Role';
 use Log::Log4perl;
 
-our $VERSION = '0.43';
+our $VERSION = '0.44';
 
 has 'logger' => (
-	is      => 'rw',
-	isa     => 'Log::Log4perl::Logger',
-	lazy    => 1,
-	default => sub { return Log::Log4perl->get_logger(ref($_[0])) }
+    is      => 'rw',
+    isa     => 'Log::Log4perl::Logger',
+    lazy    => 1,
+    default => sub { return Log::Log4perl->get_logger(ref($_[0])) }
 );
 
 sub log {

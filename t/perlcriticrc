@@ -5,5 +5,5 @@ verbose   = 4
 # top       = 50
 theme     = core
 # include   = NamingConventions ClassHierarchies    #Space-delimited list
-exclude   = Subroutines::RequireArgUnpacking Subroutines::RequireFinalReturn Subroutines::ProhibitBuiltinHomonyms Variables::RequireInitializationForLocalVars
+exclude   = RequireUseStrict RequireUseWarnings Subroutines::RequireArgUnpacking Subroutines::RequireFinalReturn Subroutines::ProhibitBuiltinHomonyms Variables::RequireInitializationForLocalVars
 # criticism-fatal = 1                               #Zero or One

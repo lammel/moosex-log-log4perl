@@ -3,26 +3,26 @@ abstract: 'A Logging Role for Moose based on Log::Log4perl'
 author:
   - 'Roland Lammel C<< <lammel@cpan.org> >>'
 build_requires:
-  ExtUtils::MakeMaker: 6.42
-  IO::Scalar: 0
-  Test::More: 0
+  ExtUtils::MakeMaker: 0
 configure_requires:
-  ExtUtils::MakeMaker: 6.42
+  ExtUtils::MakeMaker: 0
 distribution_type: module
-generated_by: 'Module::Install version 0.94'
-license: perl
+dynamic_config: 0
+generated_by: 'ExtUtils::MakeMaker version 6.57_05'
+license: unknown
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
   version: 1.4
 name: MooseX-Log-Log4perl
 no_index:
   directory:
-    - inc
     - t
+    - inc
 requires:
+  Any::Moose: 0.12
+  ExtUtils::MakeMaker: 6.42
+  IO::Scalar: 0
   Log::Log4perl: 1.13
   Moose: 0.65
-  perl: 5.8.0
-resources:
-  license: http://dev.perl.org/licenses/
-version: 0.41
+  Test::More: 0
+version: 0.44
