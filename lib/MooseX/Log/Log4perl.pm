@@ -4,7 +4,7 @@ use 5.008;
 use Any::Moose 'Role';
 use Log::Log4perl;
 
-our $VERSION = '0.44';
+our $VERSION = '0.45';
 
 has 'logger' => (
     is      => 'rw',
@@ -183,9 +183,9 @@ In alphabetical order:
 
 =back
 
-=head1 LICENCE AND COPYRIGHT
+=head1 LICENSE AND COPYRIGHT
 
-Copyright (c) 2008-2011, Roland Lammel C<< <lammel@cpan.org> >>, http://www.quikit.at
+Copyright (c) 2008-2012, Roland Lammel C<< <lammel@cpan.org> >>, http://www.quikit.at
 
 This module is free software; you can redistribute it and/or
 modify it under the same terms as Perl itself. See L<perlartistic>.

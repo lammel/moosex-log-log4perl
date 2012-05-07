@@ -1,4 +1,4 @@
-MooseX-Log-Log4perl version 0.43
+MooseX-Log-Log4perl version 0.45
 
 INSTALLATION
 
@@ -26,9 +26,9 @@ DEPENDENCIES
 - Log::Log4perl
 
 
-COPYRIGHT AND LICENCE
+COPYRIGHT AND LICENSE
 
-Copyright (C) 2011, Roland Lammel <rl@quikit.at>
+Copyright (C) 2008-2012, Roland Lammel <rl@quikit.at>
 
 This library is free software; you can redistribute it and/or modify
 it under the same terms as Perl itself.

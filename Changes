@@ -1,5 +1,9 @@
 Revision history for MooseX::Log::Log4perl
 
+0.45  Mon May 7 2012 (rl)
+    * RT#72596: META file needs regenerating, should be fixed now
+    * Correct some dist stuff (copyright, license, bundled Module::Install)
+
 0.44  Wed May 1 2012 (rl)
     * Fix CPAN tester build issue for Tie::Hash::NamedCapture (probably caused by "use English")
     * Support special 'append' prefix for category (Andreas Marienborg)

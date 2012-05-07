@@ -4,7 +4,7 @@ use Any::Moose 'Role';
 
 with 'MooseX::Log::Log4perl';
 
-our $VERSION = '0.44';
+our $VERSION = '0.45';
 
 sub log_fatal { local $Log::Log4perl::caller_depth += 1; return shift->logger->fatal(@_); }
 sub log_error { local $Log::Log4perl::caller_depth += 1; return shift->logger->error(@_); }
@@ -123,9 +123,9 @@ Inspired by suggestions by Michael Schilli C<< <m@perlmeister.com> >>
 
 Contributions from Tim Bunce C<< <TIMB@cpan.org> >>
 
-=head1 LICENCE AND COPYRIGHT
+=head1 LICENSE AND COPYRIGHT
 
-Copyright (c) 2008-2011, Roland Lammel C<< <lammel@cpan.org> >>, http://www.quikit.at
+Copyright (c) 2008-2012, Roland Lammel C<< <lammel@cpan.org> >>, http://www.quikit.at
 
 This module is free software; you can redistribute it and/or
 modify it under the same terms as Perl itself. See L<perlartistic>.
