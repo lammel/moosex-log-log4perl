@@ -19,6 +19,7 @@ README
 t/00load.t
 t/01basic.t
 t/02easy.t
+t/03inheritance.t
 t/99bench.t
 t/perl-critic.t
 t/perlcriticrc

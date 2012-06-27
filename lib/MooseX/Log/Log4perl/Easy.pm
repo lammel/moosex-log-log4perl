@@ -4,7 +4,7 @@ use Any::Moose 'Role';
 
 with 'MooseX::Log::Log4perl';
 
-our $VERSION = '0.45';
+our $VERSION = '0.46';
 
 sub log_fatal { local $Log::Log4perl::caller_depth += 1; return shift->logger->fatal(@_); }
 sub log_error { local $Log::Log4perl::caller_depth += 1; return shift->logger->error(@_); }
@@ -47,7 +47,7 @@ logmethods for all available levels to your class instance. Hence it is possible
 
   $self->log_info("blabla");
 
-without having to access a seperate log attribute as in MooseX::Log::Log4perl;
+without having to access a separate log attribute as in MooseX::Log::Log4perl;
 
 In case your app grows and you need more of the super-cow powers of Log4perl or simply don't want the additional 
 methods to clutter up your class you can simply replace all code C<< $self->log_LEVEL >> with 

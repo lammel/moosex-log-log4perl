@@ -30,4 +30,4 @@ requires:
 resources:
   license: http://dev.perl.org/licenses/
   repository: https://github.com/lammel/moosex-log-log4perl
-version: 0.45
+version: 0.46

@@ -1,5 +1,9 @@
 Revision history for MooseX::Log::Log4perl
 
+0.46  Wed Jun 27 2012 (rl)
+    * RT#77451: Spelling mistake in Easy.pm (thanks gregoa@debian.org)
+    * RT#77783: Added tests (03inheritence) to showcase expected category in logging
+
 0.45  Mon May 7 2012 (rl)
     * RT#72596: META file needs regenerating, should be fixed now
     * Correct some dist stuff (copyright, license, bundled Module::Install)

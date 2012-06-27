@@ -4,7 +4,7 @@ use 5.008;
 use Any::Moose 'Role';
 use Log::Log4perl;
 
-our $VERSION = '0.45';
+our $VERSION = '0.46';
 
 has 'logger' => (
     is      => 'rw',
