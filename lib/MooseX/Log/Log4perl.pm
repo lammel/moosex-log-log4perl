@@ -1,14 +1,15 @@
 package MooseX::Log::Log4perl;
 
 use 5.008;
-use Any::Moose 'Role';
+use Moo::Role;
+use MooX::Types::MooseLike::Base qw( InstanceOf );
 use Log::Log4perl;
 
 our $VERSION = '0.46';
 
 has 'logger' => (
     is      => 'rw',
-    isa     => 'Log::Log4perl::Logger',
+    isa     => InstanceOf['Log::Log4perl::Logger'],
     lazy    => 1,
     default => sub { return Log::Log4perl->get_logger(ref($_[0])) }
 );
@@ -89,16 +90,16 @@ instance.
     $self->log_info("Dummy");
 
 
-=head1 USING WITH MOUSE INSTEAD OF MOOSE
+=head1 USING WITH MOO INSTEAD OF MOOSE
 
-As this module is using L<Any::Moose>, you can use it with Mouse instead of Moose too.
+As this module is using L<Moo>, you can use it with Moo instead of Moose too.
 
-This will allow to simple use it as documented above in a Mouse based application, like shown in the example below:
+This will allow to simple use it as documented above in a Moo based application, like shown in the example below:
 
 This is your class consuming the MooseX::Log::Log4perl role.
 
     package MyCat;
-    use Mouse;
+    use Moo;
     
     with 'MooseX::Log::Log4perl';
     
