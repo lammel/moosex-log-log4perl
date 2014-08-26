@@ -1,6 +1,6 @@
 package MooseX::Log::Log4perl::Easy;
 
-use Any::Moose 'Role';
+use Moo::Role;
 
 with 'MooseX::Log::Log4perl';
 
