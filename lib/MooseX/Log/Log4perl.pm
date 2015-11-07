@@ -38,9 +38,9 @@ MooseX::Log::Log4perl - A Logging Role for Moose based on Log::Log4perl
 
     package MyApp;
     use Moose;
-    
+
     with 'MooseX::Log::Log4perl';
-    
+
     sub something {
         my ($self) = @_;
         $self->log->debug("started bar");    ### logs with default class catergory "MyApp"
@@ -64,7 +64,7 @@ Using the logger within a class is as simple as consuming a role:
     package MyClass;
     use Moose;
     with 'MooseX::Log::Log4perl';
-    
+
     sub dummy {
         my $self = shift;
         $self->log->info("Dummy log entry");
@@ -75,9 +75,9 @@ The logger needs to be setup before using the logger, which could happen in the 
     package main;
     use Log::Log4perl qw(:easy);
     use MyClass;
-    
+
     BEGIN { Log::Log4perl->easy_init() };
-    
+
     my $myclass = MyClass->new();
     $myclass->log->info("In my class"); # Access the log of the object
     $myclass->dummy;                    # Will log "Dummy log entry"
@@ -100,9 +100,9 @@ This is your class consuming the MooseX::Log::Log4perl role.
 
     package MyCat;
     use Moo;
-    
+
     with 'MooseX::Log::Log4perl';
-    
+
     sub catch_it {
         my $self = shift;
         $self->log->debug("Say Miau");
@@ -114,7 +114,7 @@ Which can be simply used in your main application then.
     use MyCat;
     use Log::Log4perl qw(:easy);
     BEGIN { Log::Log4perl->easy_init() };
-    
+
     my $log = Log::Log4perl->get_logger();
     $log->info("Application startup...");
     MyCat->new()->catch_it();   ### Will log "Dummy dodo"
@@ -190,4 +190,3 @@ Copyright (c) 2008-2012, Roland Lammel C<< <lammel@cpan.org> >>, http://www.quik
 
 This module is free software; you can redistribute it and/or
 modify it under the same terms as Perl itself. See L<perlartistic>.
-
