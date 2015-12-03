@@ -23,7 +23,7 @@ __ENDCFG__
 {
 	package BasicLogTest;
 
-	use Moose;
+	use Moo;
 	with 'MooseX::Log::Log4perl';
 
 	sub test_log {
@@ -42,10 +42,10 @@ __ENDCFG__
 {
 	package BasicLogTest;
 
-	use Moose;
+	use Moo;
 	with 'MooseX::Log::Log4perl';
 
-	has 'foo' => ( is => 'rw', isa => 'Str' );
+	has 'foo' => ( is => 'rw' );
 }
 
 {

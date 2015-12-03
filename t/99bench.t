@@ -29,7 +29,7 @@ END {
 {
 	package BenchMooseXLogLog4perl;
 
-	use Moose;
+	use Moo;
 	with 'MooseX::Log::Log4perl';
 
 	sub testlog { shift->log->info("Just a test for logging"); }
