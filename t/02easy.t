@@ -23,7 +23,7 @@ __ENDCFG__
 {
 	package EasyLogTest;
 
-	use Moose;
+	use Moo;
 	with 'MooseX::Log::Log4perl::Easy';
 
 	sub test_easy {

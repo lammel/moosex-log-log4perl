@@ -21,7 +21,7 @@ __ENDCFG__
 {
 	package Parent;
 
-	use Moose;
+	use Moo;
 	with 'MooseX::Log::Log4perl';
 
 	sub overridden { shift->log->warn('Parent overridden');	}
@@ -31,7 +31,7 @@ __ENDCFG__
 {
 	package Child;
 
-	use Moose;
+	use Moo;
 	extends 'Parent';
 	with 'MooseX::Log::Log4perl';
 
