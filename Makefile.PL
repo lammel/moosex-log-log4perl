@@ -7,7 +7,6 @@ build_requires 'IO::Scalar';
 build_requires 'Test::More';
 
 requires 'Moo' => '1.000007';
-requires 'MooX::Types::MooseLike' => '0.16';
 requires 'Log::Log4perl' => '1.13';
 
 license 'perl';

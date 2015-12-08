@@ -2,14 +2,12 @@ package MooseX::Log::Log4perl;
 
 use 5.008;
 use Moo::Role;
-use MooX::Types::MooseLike::Base qw( InstanceOf );
 use Log::Log4perl;
 
 our $VERSION = '0.46';
 
 has 'logger' => (
     is      => 'rw',
-    isa     => InstanceOf['Log::Log4perl::Logger'],
     lazy    => 1,
     default => sub { return Log::Log4perl->get_logger(ref($_[0])) }
 );
