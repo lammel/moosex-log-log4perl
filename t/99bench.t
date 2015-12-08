@@ -11,6 +11,8 @@ use Test::More;
 plan skip_all => 'Author test. Set $ENV{TEST_AUTHOR} to run benchmark tests' unless $ENV{TEST_AUTHOR};
 plan tests => 6;
 
+my $benchlimit = 85; # accept 85% performance hit due to method call overhead
+
 BEGIN {	$tmplogfile = 'mxll4p_benchtest.log'; }
 END {
 	### Remove tmpfile if exists
@@ -88,17 +90,17 @@ __ENDCFG__
 	}
 	my ($rate_logger, $rate_log);
 	$rate_logger = 100 * $bench{'MooseX-L4p logger'} / $bench{'Log4perl direct'};
-	ok($rate_logger > 95, sprintf("Call rate of ->logger must be above 95%% " .
+	ok($rate_logger >= $benchlimit, sprintf("Call rate of ->logger must be above $benchlimit%% " .
 		"(%i / %i = %.2f %%) to Log4perl direct", $bench{'MooseX-L4p logger'}, $bench{'Log4perl direct'}, $rate_logger));
 	$rate_log = 100 * $bench{'MooseX-L4p log'} / $bench{'Log4perl direct'};
-	ok($rate_log > 94, sprintf("Call rate of ->log must be above 94%% " .
+	ok($rate_log >= $benchlimit, sprintf("Call rate of ->log must be above $benchlimit%% " .
 		"(%i / %i = %.2f %%) to Log4perl direct", $bench{'MooseX-L4p logger'}, $bench{'Log4perl direct'}, $rate_log));
 
 	$rate_logger = 100 * $bench{'MooseX-L4p logger'} / $bench{'Log4perl method'};
-	ok($rate_logger > 95, sprintf("Call rate of ->logger must be above 95%% " .
+	ok($rate_logger >= $benchlimit, sprintf("Call rate of ->logger must be above $benchlimit%% " .
 		"(%i / %i = %.2f %%) to Log4perl via method", $bench{'MooseX-L4p logger'}, $bench{'Log4perl method'}, $rate_logger));
 	$rate_log = 100 * $bench{'MooseX-L4p log'} / $bench{'Log4perl method'};
-	ok($rate_log > 95, sprintf("Call rate of ->log must be above 95%% " .
+	ok($rate_log >= $benchlimit, sprintf("Call rate of ->log must be above $benchlimit%% " .
 		"(%i / %i = %.2f %%) to Log4perl via method", $bench{'MooseX-L4p logger'}, $bench{'Log4perl method'}, $rate_log));
 
 }
