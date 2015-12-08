@@ -51,7 +51,7 @@ MooseX::Log::Log4perl - A Logging Role for Moose based on Log::Log4perl
 
 =head1 DESCRIPTION
 
-A logging role building a very lightweight wrapper to L<Log::Log4perl> for use with your L<Moose> classes.
+A logging role building a very lightweight wrapper to L<Log::Log4perl> for use with your L<Moose> or L<Moo> classes.
 The initialization of the Log4perl instance must be performed prior to logging the first log message.
 Otherwise the default initialization will happen, probably not doing the things you expect.
 
@@ -153,22 +153,20 @@ class (what would have been the category if you didn't specify one).
 
 =head1 SEE ALSO
 
-L<Log::Log4perl>, L<Moose>, L<MooseX::LogDispatch>
+L<Log::Log4perl>, L<Moose>, L<Moo>, L<MooX::Log::Any>, L<MooX::Role::Logger>
 
 =head1 BUGS AND LIMITATIONS
 
-Please report any bugs or feature requests to
-C<bug-moosex-log4perl@rt.cpan.org>, or through the web interface at
-L<http://rt.cpan.org>.
+Please report any issues at L<https://github.com/lammel/moosex-log-log4perl>
 
 Or come bother us in C<#moose> on C<irc.perl.org>.
 
 =head1 AUTHOR
 
-Roland Lammel C<< <lammel@cpan.org> >>
+Roland Lammel L<< <lammel@cpan.org> >>
 
-Inspired by the work by Chris Prather C<< <perigrin@cpan.org> >> and Ash
-Berlin C<< <ash@cpan.org> >> on L<MooseX::LogDispatch>
+Inspired by the work by Chris Prather L<< <perigrin@cpan.org> >> and Ash
+Berlin L<< <ash@cpan.org> >> on L<MooseX::LogDispatch>
 
 =head1 CONTRIBUTORS
 
@@ -176,15 +174,19 @@ In alphabetical order:
 
 =over 2
 
-=item Michael Schilli C<< <m@perlmeister.com> >> for L<Log::Log4perl> and suggestions in the interface.
+=item * abraxxa for Any::Moose deprectation
 
-=item Tim Bunce C<< <TIMB@cpan.org> >> for corrections in the L<MooseX::Log::Log4perl::Easy> module.
+=item * Michael Schilli <m@perlmeister.com> for L<Log::Log4perl> and interface suggestions
+
+=item * omega for catgory prefix support
+
+=item * Tim Bunce <TIMB@cpan.org> for corrections in the L<MooseX::Log::Log4perl::Easy> module.
 
 =back
 
 =head1 LICENSE AND COPYRIGHT
 
-Copyright (c) 2008-2012, Roland Lammel C<< <lammel@cpan.org> >>, http://www.quikit.at
+Copyright (c) 2008-2016, Roland Lammel L<< <lammel@cpan.org> >>, L<http://www.quikit.at>
 
 This module is free software; you can redistribute it and/or
 modify it under the same terms as Perl itself. See L<perlartistic>.

@@ -30,7 +30,7 @@ MooseX::Log::Log4perl::Easy - A role for easy usage of logging in your Moose bas
  with 'MooseX::Log::Log4perl::Easy';
 
  BEGIN {
- 	Log::Log4perl->easy_init();
+ 	 Log::Log4perl->easy_init();
  }
 
  sub foo {
@@ -42,16 +42,17 @@ MooseX::Log::Log4perl::Easy - A role for easy usage of logging in your Moose bas
 
 =head1 DESCRIPTION
 
-The Easy logging role based on the L<MooseX::Log::Log4perl> logging role for Moose directly adds the
-logmethods for all available levels to your class instance. Hence it is possible to use
+The "Easy" logging role based on the L<MooseX::Log::Log4perl> logging role for
+Moose directly adds the log methods for all available levels to your class
+instance. Hence it is possible to use
 
   $self->log_info("blabla");
 
 without having to access a separate log attribute as in MooseX::Log::Log4perl;
 
-In case your app grows and you need more of the super-cow powers of Log4perl or simply don't want the additional
-methods to clutter up your class you can simply replace all code C<< $self->log_LEVEL >> with
-C<< $self->log->LEVEL >>.
+In case your app grows and you need more of the super-cow powers of Log4perl or
+simply don't want the additional methods to clutter up your class you can simply
+replace all code C<< $self->log_LEVEL >> with C<< $self->log->LEVEL >>.
 
 You can use the following regex substitution to accomplish that:
 
@@ -105,27 +106,15 @@ Logs a trace message using the logger attribute. Same as calling
 
 =head1 SEE ALSO
 
-L<MooseX::Log::Log4perl>, L<Log::Log4perl>, L<Moose>
-
-=head1 BUGS AND LIMITATIONS
-
-Please report any bugs or feature requests to
-C<bug-moosex-log4perl@rt.cpan.org>, or through the web interface at
-L<http://rt.cpan.org>.
-
-Or come bother us in C<#moose> on C<irc.perl.org>.
+L<MooseX::Log::Log4perl>
 
 =head1 AUTHOR
 
 Roland Lammel C<< <lammel@cpan.org> >>
 
-Inspired by suggestions by Michael Schilli C<< <m@perlmeister.com> >>
-
-Contributions from Tim Bunce C<< <TIMB@cpan.org> >>
-
 =head1 LICENSE AND COPYRIGHT
 
-Copyright (c) 2008-2012, Roland Lammel C<< <lammel@cpan.org> >>, http://www.quikit.at
+Copyright (c) 2008-2016, Roland Lammel L<< <lammel@cpan.org> >>, http://www.quikit.at
 
 This module is free software; you can redistribute it and/or
 modify it under the same terms as Perl itself. See L<perlartistic>.
