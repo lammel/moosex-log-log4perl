@@ -92,7 +92,7 @@ instance.
 
 As this module is using L<Moo>, you can use it with Moo instead of Moose too.
 
-This will allow to simple use it as documented above in a Moo based application, like shown in the example below:
+This will allow you to simple use it as documented above in a Moo based application, like shown in the example below:
 
 This is your class consuming the MooseX::Log::Log4perl role.
 
