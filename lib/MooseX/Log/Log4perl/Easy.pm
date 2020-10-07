@@ -6,12 +6,12 @@ with 'MooseX::Log::Log4perl';
 
 our $VERSION = '0.47';
 
-sub log_fatal { local $Log::Log4perl::caller_depth += 1; return shift->logger->fatal(@_); }
-sub log_error { local $Log::Log4perl::caller_depth += 1; return shift->logger->error(@_); }
-sub log_warn  { local $Log::Log4perl::caller_depth += 1; return shift->logger->warn(@_); }
-sub log_info  { local $Log::Log4perl::caller_depth += 1; return shift->logger->info(@_); }
-sub log_debug { local $Log::Log4perl::caller_depth += 1; return shift->logger->debug(@_); }
-sub log_trace { local $Log::Log4perl::caller_depth += 1; return shift->logger->trace(@_); }
+sub log_fatal { local $Log::Log4perl::caller_depth = $Log::Log4perl::caller_depth + 1; return shift->logger->fatal(@_); }
+sub log_error { local $Log::Log4perl::caller_depth = $Log::Log4perl::caller_depth + 1; return shift->logger->error(@_); }
+sub log_warn  { local $Log::Log4perl::caller_depth = $Log::Log4perl::caller_depth + 1; return shift->logger->warn(@_); }
+sub log_info  { local $Log::Log4perl::caller_depth = $Log::Log4perl::caller_depth + 1; return shift->logger->info(@_); }
+sub log_debug { local $Log::Log4perl::caller_depth = $Log::Log4perl::caller_depth + 1; return shift->logger->debug(@_); }
+sub log_trace { local $Log::Log4perl::caller_depth = $Log::Log4perl::caller_depth + 1; return shift->logger->trace(@_); }
 
 1;
 
